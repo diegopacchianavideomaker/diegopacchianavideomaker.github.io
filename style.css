@@ -15,7 +15,7 @@ body {
     width: 100%;
     min-height: 100vh;
     background-color: #000000;
-    color: #ffffff;
+    color: #999;
     font-family: 'Space Grotesk', sans-serif;
     /* Raw body font */
     /* Tech/Video Vibe */
@@ -42,7 +42,7 @@ a {
 }
 
 a {
-    color: #fff;
+    color: #999;
     text-decoration: none;
     transition: color 0.2s ease;
 }
@@ -206,7 +206,7 @@ nav a:hover {
     line-height: 1;
     text-align: center;
     letter-spacing: 0.2px;
-    color: #fff;
+    color: #999;
     transform: scaleX(1.0);
     text-transform: none;
 }
@@ -305,12 +305,13 @@ iframe.mini-video {
 }
 
 .page-title {
+    font-family: 'Space Grotesk', sans-serif;
     font-size: 3rem;
     font-weight: 300;
     padding: 0 0 20px 0;
     margin-bottom: 40px;
     border-bottom: 1px solid #ff0000;
-    color: #fff;
+    color: #999;
     text-shadow:
         0 0 10px rgba(255, 0, 0, 0.6),
         0 0 40px rgba(255, 0, 0, 0.15);
@@ -318,11 +319,74 @@ iframe.mini-video {
 }
 
 .content-text {
+    font-family: 'Space Grotesk', sans-serif;
     font-size: 1.5rem;
     line-height: 1.6;
     max-width: 800px;
     margin-bottom: 2rem;
-    color: #cccccc;
+    color: #999;
+}
+
+/* About Me Section */
+.about-section {
+    display: flex;
+    align-items: flex-start;
+    gap: 30px;
+    margin-top: 20px;
+}
+
+.about-photo {
+    flex-shrink: 0;
+    width: 350px;
+}
+
+.about-photo img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border: 1px solid #333;
+    filter: grayscale(30%) contrast(110%);
+    transition: filter 0.4s ease, border-color 0.4s ease;
+}
+
+.about-photo img:hover {
+    filter: grayscale(0%) contrast(100%);
+    border-color: #ff0000;
+}
+
+/* About Me Bio — arrogant style */
+.about-bio {
+    text-transform: uppercase;
+    letter-spacing: 6px;
+    word-spacing: 20px;
+    font-weight: 400;
+    font-size: 1.8rem;
+    line-height: 2;
+    transform: scaleX(1.15);
+    transform-origin: left top;
+    word-break: keep-all;
+    overflow-wrap: normal;
+    hyphens: none;
+}
+
+/* Contact Info */
+.contact-info {
+    margin: 40px auto 0;
+    line-height: 2.2;
+    font-size: 1rem;
+    max-width: none;
+}
+
+.contact-info a {
+    font-family: 'Space Grotesk', sans-serif;
+    color: #999;
+    text-decoration: none;
+    text-transform: none;
+    transition: color 0.2s ease;
+}
+
+.contact-info a:hover {
+    color: #ff0000;
 }
 
 @keyframes glowPulse {
@@ -403,7 +467,7 @@ iframe.mini-video {
     /* Smaller for grid */
     font-weight: 400;
     display: block;
-    color: #fff;
+    color: #999;
 }
 
 .work-item:hover .item-title {
@@ -413,7 +477,7 @@ iframe.mini-video {
 
 .item-meta {
     font-size: 0.9rem;
-    color: #ccc;
+    color: #999;
     display: block;
     letter-spacing: 1px;
 }
@@ -481,7 +545,7 @@ iframe.mini-video {
     position: absolute;
     top: -40px;
     right: 0;
-    color: #fff;
+    color: #999;
     font-size: 2rem;
     cursor: pointer;
     font-family: 'IBM Plex Mono', monospace;
@@ -603,6 +667,17 @@ iframe.mini-video {
     .close-modal {
         top: -35px;
         font-size: 1.5rem;
+    }
+
+    /* About section - stack on mobile */
+    .about-section {
+        flex-direction: column;
+        gap: 30px;
+    }
+
+    .about-photo {
+        width: 100%;
+        max-width: 350px;
     }
 
     /* Content text (About Me, Contact) */

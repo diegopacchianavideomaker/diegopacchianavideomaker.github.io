@@ -16,10 +16,58 @@
     </nav>
     <div class="container">
         <h1 class="page-title">ABOUT ME</h1>
-        <p class="content-text">Videomaker classe 1999 con base a Brescia.<br>Identifico il mio stile come grezzo e
-            crudo ma con<br>capacità di riuscire a portare anche prodotti morbidi<br>ed eleganti.</p>
+        <div class="about-section">
+            <div class="about-photo">
+                <img src="io.jpg" alt="Diego Pacchiana">
+            </div>
+            <p class="content-text about-bio">Videomaker classe 1999 con base a Brescia.<br>Identifico il mio stile come
+                grezzo e crudo ma con<br>capacità di riuscire a portare anche prodotti morbidi<br>ed eleganti.</p>
+        </div>
     </div>
     <script src="cursor.js"></script>
+    <!-- LETTER CURSOR SPOTLIGHT (same as front page) -->
+    <script>
+        const bioText = document.querySelector('.content-text');
+        const container = document.querySelector('.container');
+        const RADIUS = 50;
+
+        // Wrap each character in a span, group by word to prevent mid-word breaks
+        const html = bioText.innerHTML;
+        const parts = html.split(/<br\s*\/?>/gi);
+        bioText.innerHTML = parts.map(part => {
+            const trimmed = part.replace(/\s+/g, ' ').trim();
+            const words = trimmed.split(' ');
+            return words.map(word => {
+                const letters = word.split('').map(char =>
+                    `<span class="logo-char">${char}</span>`
+                ).join('');
+                return `<span style="display:inline-block;white-space:nowrap">${letters}</span>`;
+            }).join('<span class="logo-char">&nbsp;</span>');
+        }).join('<br>');
+
+        const chars = bioText.querySelectorAll('.logo-char');
+
+        container.addEventListener('mousemove', function (e) {
+            chars.forEach(span => {
+                const rect = span.getBoundingClientRect();
+                const cx = rect.left + rect.width / 2;
+                const cy = rect.top + rect.height / 2;
+                const dist = Math.hypot(e.clientX - cx, e.clientY - cy);
+                const t = Math.max(0, 1 - dist / RADIUS);
+
+                const on = t > 0.3 ? 1 : 0;
+                const g = Math.round(153 * (1 - on));
+                const b = Math.round(153 * (1 - on));
+                span.style.color = on ? `rgb(255, 0, 0)` : `rgb(153, 153, 153)`;
+            });
+        });
+
+        container.addEventListener('mouseleave', function () {
+            chars.forEach(span => {
+                span.style.color = '';
+            });
+        });
+    </script>
 </body>
 
 </html>
