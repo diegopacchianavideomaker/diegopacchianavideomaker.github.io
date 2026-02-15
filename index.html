@@ -84,7 +84,7 @@
 
             // Vibration shake — cubic easing for gradual ramp-up
             const easedProximity = proximity * proximity * proximity; // gentle start, strong peak
-            const shake = easedProximity * 8; // max 8px shake
+            const shake = easedProximity * 3.5; // reduced shake from max 8px
             const shakeX = (Math.random() - 0.5) * shake * 2;
             const shakeY = (Math.random() - 0.5) * shake * 2;
 
