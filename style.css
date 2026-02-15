@@ -1,0 +1,676 @@
+/* RAW & CRUDE ESTHETIC - REFINED */
+
+/* Import Fonts: Syne (Artistic), Space Grotesk (Body), Space Mono (Tech Nav) */
+@import url('https://fonts.googleapis.com/css2?family=Archive&family=Bebas+Neue&family=IBM+Plex+Mono:wght@300;400;500;600;700&family=Space+Grotesk:wght@300;400;600&family=Syne:wght@400;700;800&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap');
+
+/* Reset & Utilities */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    width: 100%;
+    min-height: 100vh;
+    background-color: #000000;
+    color: #ffffff;
+    font-family: 'Space Grotesk', sans-serif;
+    /* Raw body font */
+    /* Tech/Video Vibe */
+    font-size: 18px;
+    line-height: 1.4;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* Typography - Raw & Sharp */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+a {
+    text-transform: uppercase;
+    font-family: 'Syne', sans-serif;
+    /* Captivating font for titles */
+    font-weight: 700;
+    /* Light weight for elegance */
+    letter-spacing: -1px;
+    /* Opened up slightly */
+}
+
+a {
+    color: #fff;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+a:hover {
+    color: #ff0000;
+    /* RED ACCENT */
+}
+
+/* Nav - Minimal Header */
+nav {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 40px;
+    position: sticky;
+    top: 0;
+    background: rgba(0, 0, 0, 0.9);
+    z-index: 1000;
+    border-bottom: 1px solid #333;
+}
+
+nav a {
+    font-family: 'Space Mono', monospace;
+    /* Essential Tech Dark+ */
+    font-weight: 400;
+    font-size: 0.9rem;
+    /* Smaller, terminal-like */
+    letter-spacing: 0px;
+    /* Standard mono spacing */
+}
+
+nav a:hover {
+    text-decoration: line-through;
+    /* Strikethrough for raw vibe */
+    color: #ff0000;
+}
+
+/* Logo / Hero (DiegoPacchiana.html) */
+.hero-home {
+    height: 90vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    position: relative;
+}
+
+/* VHS HUD corner elements */
+.vhs-hud {
+    position: absolute;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.7rem;
+    font-weight: 300;
+    color: rgba(255, 255, 255, 0.4);
+    letter-spacing: 2px;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.vhs-top-left {
+    top: 30px;
+    left: 30px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.vhs-rec-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #ff0000;
+    animation: recBlink 1.5s ease-in-out infinite;
+}
+
+.vhs-top-right {
+    top: 30px;
+    right: 30px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+/* Sony Handycam battery icon */
+.vhs-battery {
+    display: inline-block;
+    width: 18px;
+    height: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 1px;
+    position: relative;
+    vertical-align: middle;
+    animation: recBlink 1.5s ease-in-out infinite;
+}
+
+.vhs-battery::after {
+    content: '';
+    position: absolute;
+    right: -4px;
+    top: 2px;
+    width: 3px;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 0 1px 1px 0;
+}
+
+.vhs-battery-fill {
+    display: block;
+    width: 4px;
+    height: 6px;
+    margin: 1px;
+    background: #ff0000;
+}
+
+.vhs-bottom-left {
+    bottom: 30px;
+    left: 30px;
+}
+
+.vhs-bottom-right {
+    bottom: 30px;
+    right: 30px;
+}
+
+@keyframes recBlink {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0;
+    }
+}
+
+.logo-big {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    text-decoration: none;
+    margin-bottom: 20px;
+}
+
+.logo-img {
+    width: 120px;
+    height: auto;
+    filter: drop-shadow(0 0 1px #fff) drop-shadow(0 0 1px #fff);
+    /* Double drop-shadow to simulate a stronger white stroke around the shape */
+    transition: transform 0.3s ease;
+}
+
+.logo-text {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: clamp(1rem, 2.5vw, 2rem);
+    font-weight: 200;
+    line-height: 1;
+    text-align: center;
+    letter-spacing: 0.2px;
+    color: #fff;
+    transform: scaleX(1.0);
+    text-transform: none;
+}
+
+.logo-char {
+    display: inline-block;
+    transition: color 0.15s ease, transform 0.15s ease;
+}
+
+/* Logo img: no hover effects, acts as a simple button */
+
+/* hover color now handled by per-letter JS */
+
+/* MINI VIDEO WALL */
+.video-frame {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    width: 100%;
+    max-width: 1200px;
+    /* Limit width */
+    margin-top: 20px;
+}
+
+/* Individual Video Containers */
+.video-container {
+    width: 320px;
+    height: 180px;
+    /* 16:9 Aspect Ratio */
+    border: 1px solid #333;
+    position: relative;
+    overflow: hidden;
+    background: #000;
+    transition: transform 0.3s ease;
+}
+
+.mini-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: grayscale(100%) contrast(120%);
+    transition: filter 0.3s ease;
+    border: none;
+    pointer-events: auto;
+    /* Enable interaction */
+}
+
+/* Interaction: Color on Hover */
+.video-container:hover .mini-video {
+    filter: grayscale(0%) contrast(100%);
+}
+
+.video-container:hover {
+    border: 1px solid #ff0000;
+    transform: scale(1.05);
+    /* Pop out */
+    z-index: 10;
+}
+
+/* Adjustments for Iframes */
+iframe.mini-video {
+    pointer-events: auto;
+    /* allow clicking if needed, though background=1 usually blocks it. mainly for hover detection */
+}
+
+.rec-overlay {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    color: #ff0000;
+    font-size: 0.6rem;
+    font-weight: 600;
+    animation: blink 1s infinite;
+    z-index: 10;
+    pointer-events: none;
+}
+
+@keyframes blink {
+    0% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+/* Archive Grid (ARCHIVE.html) */
+.container {
+    padding: 40px;
+    max-width: 100%;
+}
+
+.page-title {
+    font-size: 3rem;
+    font-weight: 300;
+    padding: 0 0 20px 0;
+    margin-bottom: 40px;
+    border-bottom: 1px solid #ff0000;
+    color: #fff;
+    text-shadow:
+        0 0 10px rgba(255, 0, 0, 0.6),
+        0 0 40px rgba(255, 0, 0, 0.15);
+    letter-spacing: 12px;
+}
+
+.content-text {
+    font-size: 1.5rem;
+    line-height: 1.6;
+    max-width: 800px;
+    margin-bottom: 2rem;
+    color: #cccccc;
+}
+
+@keyframes glowPulse {
+
+    0%,
+    100% {
+        opacity: 0.5;
+    }
+
+    50% {
+        opacity: 1;
+    }
+}
+
+.archive-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    /* 3 Columns */
+    gap: 20px;
+    /* Space between squares */
+}
+
+/* Work Item - The Raw Footage Look */
+.work-item {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    /* PERFECT SQUARE */
+    height: auto;
+    /* Reset fixed height */
+    overflow: hidden;
+    border: 1px solid #111;
+    /* Subtle border */
+    transition: transform 0.3s ease;
+}
+
+.work-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: grayscale(100%) contrast(110%);
+    transition: all 0.3s ease-out;
+}
+
+.work-item:hover img {
+    filter: grayscale(0%) contrast(100%);
+    transform: scale(1.05);
+    /* Zoom inside */
+}
+
+.work-item:hover {
+    border: 1px solid #ff0000;
+    /* Red border on focus */
+    z-index: 10;
+    box-shadow: 0 0 20px rgba(255, 0, 0, 0.2);
+}
+
+/* Overlays - Minimal */
+.item-info {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    z-index: 10;
+    pointer-events: none;
+    text-shadow: 0 0 5px rgba(0, 0, 0, 1);
+    opacity: 0;
+    /* Hidden by default for cleaner grid */
+    transition: opacity 0.3s ease;
+}
+
+.work-item:hover .item-info {
+    opacity: 1;
+    /* Show on hover */
+}
+
+.item-title {
+    font-size: 1.5rem;
+    /* Smaller for grid */
+    font-weight: 400;
+    display: block;
+    color: #fff;
+}
+
+.work-item:hover .item-title {
+    color: #ff0000;
+    /* Title turns red */
+}
+
+.item-meta {
+    font-size: 0.9rem;
+    color: #ccc;
+    display: block;
+    letter-spacing: 1px;
+}
+
+/* Custom Cursor */
+* {
+    cursor: none !important;
+}
+
+.cursor-dot {
+    position: fixed;
+    width: 8px;
+    height: 8px;
+    background: #ff0000;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9999;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 0 6px #ff0000, 0 0 12px #ff0000;
+}
+
+.cursor-trail {
+    position: fixed;
+    width: 6px;
+    height: 6px;
+    background: #ff0000;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9998;
+    box-shadow: 0 0 4px #ff0000, 0 0 8px rgba(255, 0, 0, 0.4);
+}
+
+/* Video Modal Overlay */
+.video-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    z-index: 10000;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.video-modal.active {
+    display: flex;
+    opacity: 1;
+}
+
+.modal-content {
+    position: relative;
+    width: 90%;
+    max-width: 1000px;
+    aspect-ratio: 16 / 9;
+    background: #000;
+    border: 1px solid #333;
+    box-shadow: 0 0 50px rgba(255, 0, 0, 0.2);
+}
+
+.close-modal {
+    position: absolute;
+    top: -40px;
+    right: 0;
+    color: #fff;
+    font-size: 2rem;
+    cursor: pointer;
+    font-family: 'IBM Plex Mono', monospace;
+    transition: color 0.3s ease;
+}
+
+.close-modal:hover {
+    color: #ff0000;
+}
+
+/* ========== MOBILE RESPONSIVE ========== */
+
+/* Tablet (max 768px) */
+@media (max-width: 768px) {
+
+    /* Nav - compact */
+    nav {
+        padding: 15px 20px;
+    }
+
+    nav a {
+        font-size: 0.75rem;
+    }
+
+    /* Hero - Home */
+    .hero-home {
+        height: auto;
+        min-height: 80vh;
+        padding: 40px 20px;
+    }
+
+    .vhs-hud {
+        font-size: 0.4rem;
+    }
+
+    /* Hide Battery and Date on mobile */
+    .vhs-top-right,
+    .vhs-bottom-right {
+        display: none;
+    }
+
+    /* Move REC (top-left by default) to Top Right */
+    .vhs-top-left {
+        top: 10px !important;
+        right: 10px !important;
+        left: auto !important;
+        justify-content: flex-end;
+    }
+
+    .vhs-rec-dot {
+        width: 5px;
+        height: 5px;
+    }
+
+    /* Move Clock (bottom-left by default) to Top Left */
+    .vhs-bottom-left {
+        top: 10px !important;
+        left: 10px !important;
+        bottom: auto !important;
+    }
+
+    .logo-img {
+        width: 80px;
+    }
+
+    .logo-text {
+        font-size: clamp(0.9rem, 4vw, 1.5rem);
+    }
+
+    /* Video Wall - stack vertically */
+    .video-frame {
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+    }
+
+    .video-container {
+        width: 100%;
+        max-width: 400px;
+        height: 180px;
+    }
+
+    /* Archive Grid - 2 columns on tablet */
+    .container {
+        padding: 20px;
+    }
+
+    .page-title {
+        font-size: 2rem;
+        margin-bottom: 20px;
+        padding-bottom: 15px;
+    }
+
+    .archive-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+    }
+
+    /* Show info always on touch (no hover) */
+    .item-info {
+        opacity: 1;
+        bottom: 10px;
+        left: 10px;
+    }
+
+    .item-title {
+        font-size: 1rem;
+    }
+
+    .item-meta {
+        font-size: 0.7rem;
+    }
+
+    /* Video Modal - wider on mobile */
+    .modal-content {
+        width: 95% !important;
+    }
+
+    .close-modal {
+        top: -35px;
+        font-size: 1.5rem;
+    }
+
+    /* Content text (About Me, Contact) */
+    .content-text {
+        font-size: 1rem;
+        line-height: 1.6;
+    }
+}
+
+/* Phone (max 480px) */
+@media (max-width: 480px) {
+
+    /* Nav - even more compact */
+    nav {
+        padding: 12px 15px;
+    }
+
+    nav a {
+        font-size: 0.65rem;
+    }
+
+    /* Hero */
+    .hero-home {
+        min-height: 70vh;
+        padding: 30px 15px;
+    }
+
+    .logo-img {
+        width: 60px;
+    }
+
+    .video-container {
+        height: 140px;
+    }
+
+    /* Archive Grid - 1 column */
+    .container {
+        padding: 15px;
+    }
+
+    .page-title {
+        font-size: 1.6rem;
+        margin-bottom: 15px;
+    }
+
+    .archive-grid {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+
+    .work-item {
+        aspect-ratio: 4 / 3;
+    }
+
+    /* Video Modal - adapted */
+    .close-modal {
+        top: -30px;
+        font-size: 1.2rem;
+    }
+}
+
+/* Disable custom cursor on touch devices */
+@media (hover: none) and (pointer: coarse) {
+    * {
+        cursor: auto !important;
+    }
+
+    .cursor-dot,
+    .cursor-trail {
+        display: none !important;
+    }
+}

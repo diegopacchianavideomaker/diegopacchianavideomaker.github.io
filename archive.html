@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="godie_logo_transparentpiccola.png" type="image/png">
+    <title>ARCHIVE | DIEGO PACCHIANA</title>
+</head>
+
+<body>
+    <nav>
+        <a href="index.html">HOME</a>
+        <a href="aboutme.html">ABOUT ME</a>
+        <a href="contact.html">CONTACT</a>
+    </nav>
+    <div class="container">
+        <h1 class="page-title" data-text="// ARCHIVE">// ARCHIVE</h1>
+        <div class="archive-grid">
+            <!-- Item 01 - Google Drive Video -->
+            <div class="work-item video-item" onclick="openVideo(this, '1SjiV92cFNnqhsvXJe6uhx-qhUwoXfGa7', 'drive')">
+                <img src="screen ff hunter.png" alt="Video Preview">
+                <div class="item-info">
+                    <span class="item-title">BLACK SWAN</span>
+                    <span class="item-meta">FASHION_FILM / 2025</span>
+                </div>
+            </div>
+            <!-- Item 02 - Google Drive Video -->
+            <div class="work-item video-item" onclick="openVideo(this, '1-0WQ_SANYDxdMtINIYuwvsSHg9aMwK4v', 'drive')">
+                <img src="Screenshot 2026-02-10 alle 23.45.35.png" alt="Circuit">
+                <div class="item-info">
+                    <span class="item-title">EROTIC TRANSLUCENCY</span>
+                    <span class="item-meta">FASHION_REEL / 2025</span>
+                </div>
+            </div>
+            <!-- Item 03 - Google Drive Video -->
+            <div class="work-item video-item" onclick="openVideo(this, '1NCUXdMuvfdgugxObHw5kwUuxn9BjRD-F', 'drive')">
+                <img src="Screenshot 2026-02-09 alle 18.03.30.png" alt="Cyberpunk">
+                <div class="item-info">
+                    <span class="item-title">GIOVANNA DARKO_GARDENIA</span>
+                    <span class="item-meta">REEL / 2025</span>
+                </div>
+            </div>
+            <!-- Item 04 -->
+            <div class="work-item">
+                <img src="https://images.unsplash.com/photo-1605810230434-7631ac76ec81?q=80&w=1000&auto=format&fit=crop"
+                    alt="Glitch">
+                <div class="item-info">
+                    <span class="item-title">DATA_LOSS</span>
+                    <span class="item-meta">GLITCH_ART</span>
+                </div>
+            </div>
+            <!-- Item 05 -->
+            <div class="work-item">
+                <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=1000&auto=format&fit=crop"
+                    alt="Tech">
+                <div class="item-info">
+                    <span class="item-title">SERVER_ROOM</span>
+                    <span class="item-meta">INFRASTRUCTURE</span>
+                </div>
+            </div>
+            <!-- Item 06 -->
+            <div class="work-item">
+                <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=1000&auto=format&fit=crop"
+                    alt="Abstract">
+                <div class="item-info">
+                    <span class="item-title">SIGNAL_NOISE</span>
+                    <span class="item-meta">ABSTRACT_09</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="cursor.js"></script>
+
+    <!-- Video Modal Structure -->
+    <div id="videoModal" class="video-modal" onclick="closeVideo()">
+        <span class="close-modal" onclick="closeVideo()">X</span>
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <div id="videoContainer" style="width:100%; height:100%;"></div>
+        </div>
+    </div>
+
+    <script>
+        function openVideo(el, videoId, param) {
+            const modal = document.getElementById('videoModal');
+            const container = document.getElementById('videoContainer');
+            const modalContent = document.querySelector('.modal-content');
+            let src = '';
+
+            if (param === 'drive') {
+                src = `https://drive.google.com/file/d/${videoId}/preview`;
+            } else {
+                src = `https://www.youtube.com/embed/${videoId}`;
+            }
+
+            // Auto-detect format from thumbnail aspect ratio
+            const img = el.querySelector('img');
+            const isVertical = img && img.naturalHeight > img.naturalWidth;
+
+            if (isVertical) {
+                modalContent.style.aspectRatio = '9 / 16';
+                modalContent.style.maxWidth = '400px';
+                modalContent.style.width = '60%';
+            } else {
+                modalContent.style.aspectRatio = '16 / 9';
+                modalContent.style.maxWidth = '1000px';
+                modalContent.style.width = '90%';
+            }
+
+            container.innerHTML = `<iframe width="100%" height="100%" src="${src}" frameborder="0" allow="autoplay; fullscreen"></iframe>`;
+
+            modal.style.display = 'flex';
+            setTimeout(() => {
+                modal.classList.add('active');
+            }, 10);
+        }
+
+        function closeVideo() {
+            const modal = document.getElementById('videoModal');
+            const container = document.getElementById('videoContainer');
+            modal.classList.remove('active');
+
+            // Wait for transition to finish before hiding and clearing src
+            setTimeout(() => {
+                modal.style.display = 'none';
+                container.innerHTML = '';
+            }, 300);
+        }
+
+        // When mouse moves over the backdrop (outside the video), refocus the page
+        // so the ESC key works again after the iframe stole focus
+        let focusInterval = null;
+
+        document.getElementById('videoModal').addEventListener('mousemove', function (e) {
+            if (!e.target.closest('.modal-content')) {
+                window.focus();
+            }
+        });
+
+        // Close on escape key — exit fullscreen first if active, otherwise close modal
+        document.addEventListener('keydown', function (event) {
+            if (event.key === "Escape") {
+                if (document.fullscreenElement || document.webkitFullscreenElement) {
+                    if (document.exitFullscreen) {
+                        document.exitFullscreen();
+                    } else if (document.webkitExitFullscreen) {
+                        document.webkitExitFullscreen();
+                    }
+                } else {
+                    closeVideo();
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>
