@@ -195,7 +195,8 @@ nav a:hover {
     height: auto;
     filter: drop-shadow(0 0 1px #fff) drop-shadow(0 0 1px #fff);
     /* Double drop-shadow to simulate a stronger white stroke around the shape */
-    transition: transform 0.3s ease;
+    transition: transform 0.08s ease-out, filter 0.3s ease;
+    will-change: transform, filter;
 }
 
 .logo-text {

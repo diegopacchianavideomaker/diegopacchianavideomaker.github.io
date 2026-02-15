@@ -76,24 +76,37 @@
             const dist = Math.hypot(mouseX - logoCX, mouseY - logoCY);
             const proximity = Math.max(0, 1 - dist / VIBRATE_RADIUS); // 0 = far, 1 = on top
 
-            // Tilt based on screen position
+            // Tilt based on screen position — subtle 3D
             const tx = (mouseX / window.innerWidth) - 0.5;
             const ty = (mouseY / window.innerHeight) - 0.5;
             const rotateY = tx * 50;
             const rotateX = -ty * 50;
 
-            // Vibration shake — intensity based on proximity
-            const shake = proximity * 25; // max 25px shake
+            // Vibration shake — cubic easing for gradual ramp-up
+            const easedProximity = proximity * proximity * proximity; // gentle start, strong peak
+            const shake = easedProximity * 8; // max 8px shake
             const shakeX = (Math.random() - 0.5) * shake * 2;
             const shakeY = (Math.random() - 0.5) * shake * 2;
 
-            logoImg.style.transform = `perspective(400px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translate(${shakeX}px, ${shakeY}px)`;
+            // Dynamic scale — grows slightly as cursor approaches
+            const scale = 1 + proximity * 0.15; // up to 1.15x
+
+            // Dynamic glow — tight red outline that appears on proximity
+            const baseGlow = 'drop-shadow(0 0 1px #fff) drop-shadow(0 0 1px #fff)';
+            const outlineOpacity = Math.min(proximity * 1.2, 0.9);
+            const redGlow = proximity > 0.1
+                ? ` drop-shadow(0 0 1px rgba(255,0,0,${outlineOpacity.toFixed(2)})) drop-shadow(0 0 3px rgba(255,0,0,${(outlineOpacity * 0.5).toFixed(2)}))`
+                : '';
+            logoImg.style.filter = baseGlow + redGlow;
+
+            logoImg.style.transform = `perspective(600px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(${scale}) translate(${shakeX}px, ${shakeY}px)`;
 
             if (proximity > 0) {
                 vibrateId = requestAnimationFrame(vibrate);
             } else {
                 vibrateId = null;
-                logoImg.style.transform = `perspective(400px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+                logoImg.style.transform = `perspective(600px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+                logoImg.style.filter = baseGlow;
             }
         }
 
