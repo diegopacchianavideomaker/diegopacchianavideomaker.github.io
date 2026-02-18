@@ -28,10 +28,13 @@
 
         <!-- VIDEO WALL -->
         <div class="video-frame">
-            <!-- VIDEO 1: Black Swan -->
+            <!-- VIDEO 1: Random Loop YouTube -->
             <div class="video-container">
-                <iframe src="https://player.vimeo.com/video/1164405643?background=1&autoplay=1&loop=1&byline=0&title=0"
-                    class="mini-video" frameborder="0" allow="autoplay; fullscreen" allowfullscreen>
+                <iframe id="ytPlayerRandom"
+                    src="https://www.youtube.com/embed/RdKSgAYfN0s?autoplay=1&mute=1&controls=0&showinfo=0&rel=0&enablejsapi=1&vq=hd1080"
+                    class="mini-video" frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen>
                 </iframe>
                 <div class="rec-overlay">REC ●</div>
             </div>
@@ -49,35 +52,47 @@
         </div>
     </div>
 
-    <!-- VIMEO SDK & LOOP LOGIC (Video 1 only) -->
-    <script src="https://player.vimeo.com/api/player.js"></script>
-    <script>
-        document.querySelectorAll('iframe.mini-video:not(#ytPlayer)').forEach(iframe => {
-            const player = new Vimeo.Player(iframe);
-            player.on('timeupdate', function (data) {
-                if (data.seconds >= 10) {
-                    player.setCurrentTime(0);
-                }
-            });
-        });
-    </script>
-
-    <!-- YouTube IFrame API & 10s muted loop (Video 2) -->
+    <!-- YouTube IFrame API & Loop Logic -->
     <script src="https://www.youtube.com/iframe_api"></script>
     <script>
-        var ytPlayerObj;
+        var playerFixed, playerRandom;
+
         function onYouTubeIframeAPIReady() {
-            ytPlayerObj = new YT.Player('ytPlayer', {
+            // Video 2: Fixed 10s loop
+            playerFixed = new YT.Player('ytPlayer', {
                 events: {
                     'onReady': function (event) {
                         event.target.mute();
                         event.target.setPlaybackQuality('hd1080');
                         event.target.playVideo();
                         setInterval(function () {
-                            if (ytPlayerObj && ytPlayerObj.getCurrentTime && ytPlayerObj.getCurrentTime() >= 10) {
-                                ytPlayerObj.seekTo(0, true);
+                            // Loop every 10 seconds to 0:00
+                            if (playerFixed && playerFixed.getCurrentTime && playerFixed.getCurrentTime() >= 10) {
+                                playerFixed.seekTo(0, true);
                             }
                         }, 500);
+                    }
+                }
+            });
+
+            // Video 1: Random 10s loop
+            playerRandom = new YT.Player('ytPlayerRandom', {
+                events: {
+                    'onReady': function (event) {
+                        event.target.mute();
+                        event.target.setPlaybackQuality('hd1080');
+                        event.target.playVideo();
+
+                        // Every 10 seconds, jump to a new random time.
+                        setInterval(function () {
+                            if (playerRandom && playerRandom.getDuration) {
+                                const duration = playerRandom.getDuration();
+                                if (duration > 10) { // Ensure video is long enough
+                                    const randomTime = Math.random() * (duration - 10);
+                                    playerRandom.seekTo(randomTime, true);
+                                }
+                            }
+                        }, 10000); // 10000 ms = 10 s
                     }
                 }
             });

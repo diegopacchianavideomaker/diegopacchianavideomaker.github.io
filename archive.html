@@ -15,8 +15,9 @@
         <a href="contact.html">CONTACT</a>
     </nav>
     <div class="container">
-        <h1 class="page-title" data-text="// ARCHIVE">// ARCHIVE</h1>
-        <div class="archive-grid">
+        <!-- PROJECT SECTION -->
+        <h1 class="page-title accordion-header" data-text="// PROJECT">// PROJECT</h1>
+        <div class="archive-grid accordion-content">
             <!-- Item 01 - Google Drive Video -->
             <div class="work-item video-item" onclick="openVideo(this, '1SjiV92cFNnqhsvXJe6uhx-qhUwoXfGa7', 'drive')">
                 <img src="screen ff hunter.png" alt="Video Preview">
@@ -76,6 +77,12 @@
                     <span class="item-meta">ABSTRACT_09</span>
                 </div>
             </div>
+        </div>
+
+        <!-- EVENTS SECTION -->
+        <h1 class="page-title accordion-header" data-text="// EVENTS">// EVENTS</h1>
+        <div class="archive-grid accordion-content">
+            <!-- Currently empty -->
         </div>
     </div>
     <script src="cursor.js"></script>
@@ -158,6 +165,17 @@
                     closeVideo();
                 }
             }
+        });
+
+        // Accordion Functionality
+        document.querySelectorAll('.accordion-header').forEach(header => {
+            header.addEventListener('click', () => {
+                header.classList.toggle('active');
+                const content = header.nextElementSibling;
+                if (content.classList.contains('accordion-content')) {
+                    content.classList.toggle('active');
+                }
+            });
         });
     </script>
 </body>
