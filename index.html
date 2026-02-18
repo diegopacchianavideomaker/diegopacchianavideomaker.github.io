@@ -36,25 +36,24 @@
                 <div class="rec-overlay">REC ●</div>
             </div>
 
-            <!-- VIDEO 2: BTS BlackSwan -->
+            <!-- VIDEO 2: YouTube -->
             <div class="video-container">
-                <iframe src="https://player.vimeo.com/video/1164402424?background=1&autoplay=1&loop=1&byline=0&title=0"
-                    class="mini-video" frameborder="0" allow="autoplay; fullscreen" allowfullscreen>
+                <iframe id="ytPlayer"
+                    src="https://www.youtube.com/embed/OFxLYx2tUro?autoplay=1&mute=1&loop=1&controls=0&showinfo=0&rel=0&playlist=OFxLYx2tUro&enablejsapi=1"
+                    class="mini-video" frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen>
                 </iframe>
                 <div class="rec-overlay">REC ●</div>
             </div>
         </div>
     </div>
 
-    <!-- VIMEO SDK & LOOP LOGIC -->
+    <!-- VIMEO SDK & LOOP LOGIC (Video 1 only) -->
     <script src="https://player.vimeo.com/api/player.js"></script>
     <script>
-        const iframes = document.querySelectorAll('iframe.mini-video');
-
-        iframes.forEach(iframe => {
+        document.querySelectorAll('iframe.mini-video:not(#ytPlayer)').forEach(iframe => {
             const player = new Vimeo.Player(iframe);
-
-            // Loop automatically at 10 seconds
             player.on('timeupdate', function (data) {
                 if (data.seconds >= 10) {
                     player.setCurrentTime(0);
@@ -62,6 +61,28 @@
             });
         });
     </script>
+
+    <!-- YouTube IFrame API & 10s muted loop (Video 2) -->
+    <script src="https://www.youtube.com/iframe_api"></script>
+    <script>
+        var ytPlayerObj;
+        function onYouTubeIframeAPIReady() {
+            ytPlayerObj = new YT.Player('ytPlayer', {
+                events: {
+                    'onReady': function (event) {
+                        event.target.mute();
+                        event.target.playVideo();
+                        setInterval(function () {
+                            if (ytPlayerObj && ytPlayerObj.getCurrentTime && ytPlayerObj.getCurrentTime() >= 10) {
+                                ytPlayerObj.seekTo(0, true);
+                            }
+                        }, 500);
+                    }
+                }
+            });
+        }
+    </script>
+
     <!-- LOGO 3D TILT + VIBRATION -->
     <script>
         const logoImg = document.getElementById('logoImg');
