@@ -233,8 +233,8 @@ nav a:hover {
 
 /* Individual Video Containers */
 .video-container {
-    width: 320px;
-    height: 180px;
+    width: 480px;
+    height: 270px;
     /* 16:9 Aspect Ratio */
     border: 1px solid #333;
     position: relative;

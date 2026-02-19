@@ -58,19 +58,24 @@
         var playerFixed, playerRandom;
 
         function onYouTubeIframeAPIReady() {
-            // Video 2: Fixed 10s loop
+            // Video 2: Random 10s loop
             playerFixed = new YT.Player('ytPlayer', {
                 events: {
                     'onReady': function (event) {
                         event.target.mute();
                         event.target.setPlaybackQuality('hd1080');
                         event.target.playVideo();
+
+                        // Every 10 seconds, jump to a new random time.
                         setInterval(function () {
-                            // Loop every 10 seconds to 0:00
-                            if (playerFixed && playerFixed.getCurrentTime && playerFixed.getCurrentTime() >= 10) {
-                                playerFixed.seekTo(0, true);
+                            if (playerFixed && playerFixed.getDuration) {
+                                const duration = playerFixed.getDuration();
+                                if (duration > 10) { // Ensure video is long enough
+                                    const randomTime = Math.random() * (duration - 10);
+                                    playerFixed.seekTo(randomTime, true);
+                                }
                             }
-                        }, 500);
+                        }, 10000); // 10000 ms = 10 s
                     }
                 }
             });
