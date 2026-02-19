@@ -80,6 +80,21 @@ nav a:hover {
     color: #ff0000;
 }
 
+.nav-logo {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    height: 40px;
+    width: auto;
+    filter: drop-shadow(0 0 1px #fff);
+    transition: filter 0.3s ease;
+}
+
+.nav-logo:hover {
+    filter: drop-shadow(0 0 2px #ff0000);
+}
+
 /* Logo / Hero (DiegoPacchiana.html) */
 .hero-home {
     height: 90vh;
@@ -219,6 +234,20 @@ nav a:hover {
 /* Logo img: no hover effects, acts as a simple button */
 
 /* hover color now handled by per-letter JS */
+
+
+/* Works Title */
+.works-title {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.8rem;
+    font-weight: 300;
+    color: #666;
+    letter-spacing: 3px;
+    text-align: center;
+    margin-top: -10px;
+    margin-bottom: 10px;
+    opacity: 0.8;
+}
 
 /* MINI VIDEO WALL */
 .video-frame {
