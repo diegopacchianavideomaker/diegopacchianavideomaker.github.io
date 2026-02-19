@@ -80,11 +80,24 @@ nav a:hover {
     color: #ff0000;
 }
 
+.nav-group {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.nav-logo-link {
+    display: flex;
+    align-items: center;
+    text-decoration: none !important;
+}
+
+.nav-logo-link:hover {
+    text-decoration: none !important;
+    background: none !important;
+}
+
 .nav-logo {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
     height: 40px;
     width: auto;
     filter: drop-shadow(0 0 0.5px #fff);
