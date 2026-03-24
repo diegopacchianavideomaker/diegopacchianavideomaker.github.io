@@ -72,6 +72,9 @@ nav a {
     /* Smaller, terminal-like */
     letter-spacing: 0px;
     /* Standard mono spacing */
+    text-shadow:
+        0 0 4px rgba(153, 153, 153, 0.5),
+        0 0 10px rgba(153, 153, 153, 0.2);
 }
 
 nav a:hover {
@@ -124,6 +127,9 @@ nav a:hover {
     letter-spacing: 2px;
     pointer-events: none;
     z-index: 1;
+    text-shadow:
+        0 0 4px rgba(255, 255, 255, 0.3),
+        0 0 10px rgba(255, 255, 255, 0.1);
 }
 
 .vhs-top-left {
@@ -232,6 +238,10 @@ nav a:hover {
     color: #999;
     transform: scaleX(1.0);
     text-transform: none;
+    text-shadow:
+        0 0 6px rgba(153, 153, 153, 0.6),
+        0 0 15px rgba(153, 153, 153, 0.25),
+        0 0 30px rgba(153, 153, 153, 0.1);
 }
 
 .logo-char {
@@ -255,6 +265,9 @@ nav a:hover {
     margin-top: -10px;
     margin-bottom: 10px;
     opacity: 0.8;
+    text-shadow:
+        0 0 5px rgba(102, 102, 102, 0.5),
+        0 0 12px rgba(102, 102, 102, 0.2);
 }
 
 /* MINI VIDEO WALL */
